@@ -1,12 +1,12 @@
 const assert=require('node:assert/strict'),C=require('./core.js');
 let s=C.fresh('2026-10-01');
-assert.equal(C.list(s,'2026-10-18').length,6);
+assert.equal(C.list(s,'2026-10-18').length,7);
 assert.equal(C.list(s,'2026-09-30').length,0);
 assert.equal(C.shift('2024-02-28',1),'2024-02-29');
 assert.equal(C.shift('2026-12-31',1),'2027-01-01');
 assert.equal(C.validDate('2026-02-30'),false);
 const h=s.habits[0];h.days=[1,3,5];
-for(const d of ['2026-10-12','2026-10-14','2026-10-16'])s.records[d]={[h.id]:{done:true,note:'test'}};
+for(const d of ['2026-10-12','2026-10-14','2026-10-16'])s.records[d]={[h.id]:C.entry(h,h.goal,'test')};
 assert.equal(C.streak(s,h,'2026-10-18'),3,'rest days keep streak');
 assert.equal(C.streak(s,h,'2026-10-19'),3,'today pending keeps streak');
 assert.equal(C.streak(s,h,'2026-10-20'),0,'missed scheduled day ends streak');
