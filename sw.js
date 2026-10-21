@@ -1,5 +1,5 @@
-const CACHE='ririyougong-v2.0.0';
-const ASSETS=['./','./index.html','./style.css?v=2','./core.js?v=2','./app.js?v=2','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+const CACHE='ririyougong-v2.1.0';
+const ASSETS=['./','./index.html','./style.css?v=2.1','./core.js?v=2.1','./app.js?v=2.1','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS.map(url=>new Request(url,{cache:'reload'})))).then(()=>self.skipWaiting()));
 });

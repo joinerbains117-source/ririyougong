@@ -88,6 +88,9 @@ function monthSummary(s,month,today=dateKey()) {
     result.days.push({date,planned,completed,rate:planned?Math.round(completed/planned*100):0});
   }
   result.rate=result.planned?Math.round(result.completed/result.planned*100):0;
+  const tracked=result.days.filter(d=>d.planned>0);
+  result.trackedDays=tracked.length;
+  result.averageDayRate=tracked.length?Math.round(tracked.reduce((sum,d)=>sum+d.completed/d.planned*100,0)/tracked.length*10)/10:0;
   result.habits=[...rows.values()].filter(r=>r.planned).map(r=>({...r,rate:Math.round(r.completed/r.planned*100)}));
   return result;
 }
